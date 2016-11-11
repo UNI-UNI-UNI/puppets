@@ -86,4 +86,3 @@ user {'wilma':
         password => generate('/bin/sh','-c',"python -c 'import crypt, sys; sys.stdout.write( crypt.crypt(\"pass\",\"\$6\$salty\"))'") #1c
         #password => pw_hash('pass','SHA-512','saltysalt')
 }
-# Testpush
