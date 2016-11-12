@@ -1,0 +1,13 @@
+
+
+# Setup Git
+# Check remotes
+git remote -v
+# Add in git thing
+git remote add origin ssh://git@github.com/UNI-UNI-UNI/puppets.git
+
+
+# Run local policy
+puppet apply -v filename.pp
+
+# 
