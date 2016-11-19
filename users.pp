@@ -18,9 +18,11 @@ user {'becca':
 	home => '/home/becca', # 1a
         # Print doesn't work so well, use stdout instead.
         # Makes a sha512 string to use with password
-        # Using sha1('password') only created a sha-1.
+        # Using sha1('password') only created a sha-1 not really designed for creating passwords.
         # mkpasswd not available
         password => generate('/bin/sh','-c',"python -c 'import crypt, sys; sys.stdout.write( crypt.crypt(\"pass\",\"\$6\$salty\"))'"), #1c
+        # Use below if able to use standard libs
+        #password => pw_hash('pass','SHA-512','saltysalt')
 }
 
 user {'fred':
@@ -33,6 +35,7 @@ user {'fred':
         # Print doesn't work so well, use stdout instead.
         # Makes a sha512 string to use with password
         password => generate('/bin/sh','-c',"python -c 'import crypt, sys; sys.stdout.write( crypt.crypt(\"pass\",\"\$6\$salty\"))'") #1c
+        # Use below if able to use standard libs
         #password => pw_hash('pass','SHA-512','saltysalt')
 }
 
@@ -42,9 +45,10 @@ user {'wilma':
         uid => '10032188', #1d
         shell => '/bin/csh', #1e
         managehome => true, #1a
-	home => '/home/fred', #1a
+	home => '/home/wilma', #1a
         # Print doesn't work so well, use stdout instead.
         # Makes a sha512 string to use with password
         password => generate('/bin/sh','-c',"python -c 'import crypt, sys; sys.stdout.write( crypt.crypt(\"pass\",\"\$6\$salty\"))'") #1c
-        #password => pw_hash('pass','SHA-512','saltysalt')
+        # Use below if able to use standard libs
+        # password => pw_hash('pass','SHA-512','saltysalt')
 }
