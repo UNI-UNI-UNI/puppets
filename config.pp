@@ -31,10 +31,9 @@ file_line { 'becca_priv':
 
 # Fred sudo access via group - 4d
 # Ensure /usr/local/bin is in path - 4e, 7
-file_line { 'path':
+file { '/etc/profile.d/usr_local_bin.sh':
         ensure => present,
-        path => '/etc/bashrc',
-        line => 'export PATH=$PATH:/usr/local/bin',
+        content => 'export PATH=$PATH:/usr/local/bin',
 }
 
 
