@@ -36,8 +36,8 @@ class openssh {
         }
 }
 
-service { 'sshfs':
-        name => 'sshfs',
+service { 'vncserver':
+        name => 'vncserver',
         ensure => running,
         enable => true,
 }

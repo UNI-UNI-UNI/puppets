@@ -15,6 +15,10 @@ package { 'httpd':
 }
 
 # 3c MySQL - mariadb
+package { 'mariadb':
+        ensure => installed,
+        name => 'mariadb',
+}
 # RHEL/CentOS use TigerVNC
 # 3d vncserver
 package { 'vncserver':

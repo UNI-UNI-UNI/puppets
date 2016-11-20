@@ -48,7 +48,17 @@ user {'wilma':
 	home => '/home/wilma', #1a
         # Print doesn't work so well, use stdout instead.
         # Makes a sha512 string to use with password
-        password => generate('/bin/sh','-c',"python -c 'import crypt, sys; sys.stdout.write( crypt.crypt(\"pass\",\"\$6\$salty\"))'") #1c
+        password => generate('/bin/sh','-c',"python -c 'import crypt, sys; sys.stdout.write( crypt.crypt(\"pass\",\"\$6\$salty\"))'"), #1c
         # Use below if able to use standard libs
         # password => pw_hash('pass','SHA-512','saltysalt')
+        # Manage key via puppet
+        # https://docs.puppet.com/puppet/latest/reference/types/ssh_authorized_key.html
+        purge_ssh_keys => true,
+}
+
+ssh_authorized_key { 'wilma':
+        ensure => present,
+        type => 'ssh-dss',
+        user => 'wilma',
+        key => 'AAAAB3NzaC1kc3MAAACBAMO8rRLLAqGUUIX8gJddWo2sl1wyHuH1gU0NCtiiK9s2gFu7d5azzT5HW6L3Hj7QBmRwaz9mlEJVpdkey0OBsxAHXcIuqIyhLP2NfQd9ZBCB6c7IxL64TwW9TwMJeSs953i0uWWMLoDt6qy+SmCde88eT3i0a6y5Yu+y14NOgfPHAAAAFQDllsOJQZkt38zhB544rFLmIITCvQAAAIA+krSYYlq6JC/B0W9Eh27sQ8yr18GmcHydt8aEPbEf/0ezgq9lxTfoGRlEa54ChAxHGjiwyx1wvSqEMOY0ykb+iy9rXD6fTmDvXgZdcAp6ke6ZLDhaOUxnVyTc4z9BwukNhAEV+/bIfXQ0cfwcCwQvJ8dWESmF2bPj7VSwj8N85wAAAIEAk0J2YyC/5DqiRfyv+AwSTnoiP4lGMvvvVV6Axa4zmGBUQpMFlQiCtR3YMOC0zyNVy13sXN0ZeIbhwdzA7AKFPrLwXxwtSu/epmx46acXX6JMZdPbptzak+0ckPTPo0O1kMnFToBcmoKiKkRbG9T0h0yLrPnVkvTNf7gHt3QoIl0=',
 }
