@@ -1,23 +1,27 @@
 
-class packages:fullhttpd {
+class packages::fullhttpd {
+        package { 'httpd':
+                ensure => present,
+                name   => httpd,
+        }
        # 4b - Apache Create directory
-        file { "/var/www/s3462188":
+        file { '/var/www/s3462188':
                 ensure => directory,
-                mode => '0755',
+                mode   => '0755',
         }
         # Apache set docroot
         file_line { 'docRoot':
                 ensure => present,
-                path => '/etc/httpd/conf/httpd.conf',
-                line => 'DocumentRoot "/var/www/s3462188"',
-                match => '^DocumentRoot',
+                path   => '/etc/httpd/conf/httpd.conf',
+                line   => 'DocumentRoot "/var/www/s3462188"',
+                match  => '^DocumentRoot',
         }
  
 
         service { 'httpd':
-                name    => 'httpd',
-                ensure  => running,
-                enable  => true,
+                name   => 'httpd',
+                ensure => running,
+                enable => true,
         }
 
         file { '/etc/httpd/httpd.conf':

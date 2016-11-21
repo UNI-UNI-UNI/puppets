@@ -1,8 +1,8 @@
-class packages::mysql {
+class packages::fullmysql {
 
         package { 'mariadb':
                 ensure => installed,
-                name => 'mariadb',
+                name   => 'mariadb',
         }
 
 

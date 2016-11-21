@@ -1,5 +1,5 @@
 # 3g lynx - requires extras
-class packages::lynx {
+class packages::fulllynx {
         # Case statement - https://docs.puppet.com/puppet/latest/reference/lang_conditional.html#if-statements
         $inst_option = $facts['os']['name'] ? {
                 'Redhat' =>  '["--enablerepo","hui-REGION-rhel-server-extras rhui-REGION-rhel-server-optional"]' ,
@@ -8,8 +8,8 @@ class packages::lynx {
 
 
         package { 'lynx':
-                ensure => installed,
-                name => 'lynx',
+                ensure          => installed,
+                name            => 'lynx',
                 install_options => $inst_option,
        }
 }

@@ -1,14 +1,14 @@
 class packages::fullopenssh {
         package { 'openssh':
                 ensure => installed,
-                name => 'openssh',
+                name   => 'openssh',
         }
         # Disable Root SSH - 4a
         file_line { 'disable_root_ssh':
                 ensure => present,
-                path => '/etc/ssh/sshd_config',
-                line => 'PermitRootLogin no',
-                match => '^#?PermitRootLogin',
+                path   => '/etc/ssh/sshd_config',
+                line   => 'PermitRootLogin no',
+                match  => '^#?PermitRootLogin',
         }
 
         # Notify service 

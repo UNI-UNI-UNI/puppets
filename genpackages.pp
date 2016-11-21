@@ -5,31 +5,31 @@ class packages::genpackages {
         # 3e tmux
         package { 'tmux':
                 ensure => installed,
-                name => 'tmux',
+                name   => 'tmux',
         }
 
         # 3f Depedancy, CentOS\RHEL 7 only has 64bit libraries
         package { 'glibc.i686':
                 ensure => installed,
-                name => 'glibc.i686',
+                name   => 'glibc.i686',
         }
 
         package { 'libxml2.i686':
                 ensure => installed,
-                name => 'libxml2.i686',
+                name   => 'libxml2.i686',
         }
 
         package { 'zlib.i686':
                 ensure => installed,
-                name => 'zlib.i686',
+                name   => 'zlib.i686',
         }
 
         # 3f dia2code - install via RPM
         package { 'dia2code':
-                require => Package['glibc.i686', 'libxml2.i686' , 'zlib.i686'],
+                require  => Package['glibc.i686', 'libxml2.i686' , 'zlib.i686'],
                 provider => 'rpm',
-                ensure => installed,
-                source => 'http://prdownloads.sourceforge.net/dia2code/dia2code-0.8.1-1.i686.rpm',
+                ensure   => installed,
+                source   => 'http://prdownloads.sourceforge.net/dia2code/dia2code-0.8.1-1.i686.rpm',
         }
 
 
@@ -37,43 +37,43 @@ class packages::genpackages {
         # 3h gcc
         package { 'gcc':
                 ensure => installed,
-                name => 'gcc',
+                name   => 'gcc',
         }
 
         # 3i gdb
         package { 'gdb':
                 ensure => installed,
-                name => 'gdb',
+                name   => 'gdb',
         }
 
         # 3j cgdb
         package { 'cgdb':
                 ensure => installed,
-                name => 'cgdb',
+                name   => 'cgdb',
         }
         # 3k vim
         package { 'vim':
                 ensure => installed,
-        name => 'vim',
+        name           => 'vim',
         }
 
         # 3l emacs
         package { 'emacs':
                 ensure => installed,
-                name => 'emacs',
+                name   => 'emacs',
         }
 
         package { 'epel-release':
                 provider => 'rpm',
-                ensure => installed,
-                source => 'http://dl.fedoraproject.org/pub/epel/7/x86_64/e/epel-release-7-8.noarch.rpm',
+                ensure   => installed,
+                source   => 'http://dl.fedoraproject.org/pub/epel/7/x86_64/e/epel-release-7-8.noarch.rpm',
                 #name => 'epel-release',
         }
 
         package {'sshfs':
-                name => 'sshfs',
+                name   => 'sshfs',
                 ensure => installed,
-        require => Package['epel-release'],
+        require        => Package['epel-release'],
         }
 
 
