@@ -1,3 +1,5 @@
+# Installs and configured VNCServer
+# Startup not working well, possibly because user information isn't defined.
 class packages::fullvncserver {
         package { 'vncserver':
                 ensure => installed,
@@ -7,10 +9,10 @@ class packages::fullvncserver {
 
         # Setup notify, copy file
         file { '/etc/systemd/system/vncserver@.service':
+                ensure => present,
                 notify => Service['vncserver'],
                 mode   => '0644',
                 source => '/usr/lib/systemd/system/vncserver@.service',
-                ensure => present,
         }
 
         # No config file, watch file is vnc service file, user is specified here.
@@ -18,7 +20,7 @@ class packages::fullvncserver {
         file_line { 'vnc_exec_start':
                 ensure => present,
                 path   => '/etc/systemd/system/vncserver@.service',
-                line   => 'ExecStart=/usr/sbin/runuser -l wilma -c "/usr/bin/vncserver %i -geometry 1280x1024"',
+                line   => 'ExecStart=/usr/sbin/runuser -l wilma -c "/usr/bin/vncserver %i"',
                 match  => '^ExecStart=',
         }
 
@@ -31,9 +33,9 @@ class packages::fullvncserver {
 
         # Doesn't start well, looks like it need some user setup
         service { 'vncserver':
+                ensure  => running,
                 require => Package['vncserver'],
                 name    => 'vncserver',
-                ensure  => running,
                 enable  => true,
         }
 

@@ -1,10 +1,9 @@
-# Setup config
-#
+# Setup misc config
 class packages::miscconfig {
         # Configure Agent check-in - 20 minutes - 2
         file_line { 'agent_runinterval':
-                path   => '/etc/puppetlabs/puppet/puppet.conf',
                 ensure => present,
+                path   => '/etc/puppetlabs/puppet/puppet.conf',
                 after  => '\[agent\]',
                 line   => 'runinterval=20m',
         }

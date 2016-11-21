@@ -1,3 +1,5 @@
+# Installs and configures openssh package
+# Ensures root login is disabled.
 class packages::fullopenssh {
         package { 'openssh':
                 ensure => installed,
@@ -21,8 +23,8 @@ class packages::fullopenssh {
         }
 
         service { 'sshd':
-                require => Package['openssh'],
                 ensure  => running,
+                require => Package['openssh'],
                 enable  => true,
         }
 

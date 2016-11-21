@@ -1,3 +1,4 @@
+# Configures SSHFS mount point
 class packages::mntsshfs {
 
         file {'/home/becca/titan':

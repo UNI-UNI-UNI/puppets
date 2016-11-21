@@ -1,10 +1,11 @@
-
+# Install and configure HTTPD
+# Set document root to /var/www/s3462188 and ensure directory exists
 class packages::fullhttpd {
         package { 'httpd':
                 ensure => present,
                 name   => httpd,
         }
-       # 4b - Apache Create directory
+        # 4b - Apache Create directory
         file { '/var/www/s3462188':
                 ensure => directory,
                 mode   => '0755',
@@ -16,11 +17,10 @@ class packages::fullhttpd {
                 line   => 'DocumentRoot "/var/www/s3462188"',
                 match  => '^DocumentRoot',
         }
- 
 
         service { 'httpd':
-                name   => 'httpd',
                 ensure => running,
+                name   => 'httpd',
                 enable => true,
         }
 

@@ -26,9 +26,9 @@ class packages::genpackages {
 
         # 3f dia2code - install via RPM
         package { 'dia2code':
+                ensure   => installed,
                 require  => Package['glibc.i686', 'libxml2.i686' , 'zlib.i686'],
                 provider => 'rpm',
-                ensure   => installed,
                 source   => 'http://prdownloads.sourceforge.net/dia2code/dia2code-0.8.1-1.i686.rpm',
         }
 
@@ -54,7 +54,7 @@ class packages::genpackages {
         # 3k vim
         package { 'vim':
                 ensure => installed,
-        name           => 'vim',
+                name   => 'vim',
         }
 
         # 3l emacs
@@ -64,16 +64,15 @@ class packages::genpackages {
         }
 
         package { 'epel-release':
-                provider => 'rpm',
                 ensure   => installed,
+                provider => 'rpm',
                 source   => 'http://dl.fedoraproject.org/pub/epel/7/x86_64/e/epel-release-7-8.noarch.rpm',
-                #name => 'epel-release',
         }
 
         package {'sshfs':
-                name   => 'sshfs',
-                ensure => installed,
-        require        => Package['epel-release'],
+                ensure  => installed,
+                name    => 'sshfs',
+                require => Package['epel-release'],
         }
 
 
