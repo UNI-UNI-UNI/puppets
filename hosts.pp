@@ -1,7 +1,8 @@
 # Setup RMIT CSIT Host entries
 # Information current on 19/11/16
 class packages::hosts {
-        # Section 5, IPs obtained through nslookup and are accurate to the time performed.
+        # Section 5, IPs obtained through nslookup \
+        # are accurate to the time performed.
         host { 'titan':
                 ensure       => present,
                 name         => 'titan.csit.rmit.edu.au',

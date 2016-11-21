@@ -19,6 +19,6 @@ class packages::miscconfig {
         file { '/etc/profile.d/usr_local_bin.sh':
                 ensure  => present,
                 # Refenced from /etc/profile.d/puppet-agent.conf
-                content => 'if ! echo $PATH | grep -q /usr/local/bin ; then   export PATH=$PATH:/usr/local/bin ;fi',
+                content => 'if ! echo $PATH | grep -q /usr/local/bin ; then export PATH=$PATH:/usr/local/bin ;fi',
         }
 }

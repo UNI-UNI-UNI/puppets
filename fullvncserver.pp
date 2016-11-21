@@ -15,7 +15,9 @@ class packages::fullvncserver {
                 source => '/usr/lib/systemd/system/vncserver@.service',
         }
 
-        # No config file, watch file is vnc service file, user is specified here.
+        # No config file to watch
+        # Use the vnc service file, 
+        # user is specified here.
         # Set user to wilma for test
         file_line { 'vnc_exec_start':
                 ensure => present,
